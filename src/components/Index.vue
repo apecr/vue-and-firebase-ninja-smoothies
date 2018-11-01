@@ -17,6 +17,7 @@
 <script>
 import db from "@/firebase/init";
 
+const smoothiesCollection = "smoothies";
 export default {
   name: "Index",
   data() {
@@ -26,12 +27,17 @@ export default {
   },
   methods: {
     deleteSmoothie({ id }) {
-      this.smoothies = this.smoothies.filter(smoothie => smoothie.id !== id);
+      // delete doc from firestore
+      db.collection(smoothiesCollection).doc(id).delete()
+      .then(_ => {
+        this.smoothies = this.smoothies.filter(smoothie => smoothie.id !== id);  
+      });
+      
     }
   },
   created() {
     //fetch data from Firestore
-    db.collection("smoothies")
+    db.collection(smoothiesCollection)
       .get()
       .then(
         snaphot =>
