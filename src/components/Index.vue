@@ -15,30 +15,32 @@
 </template>
 
 <script>
+import db from "@/firebase/init";
+
 export default {
   name: "Index",
   data() {
     return {
-      smoothies: [
-        {
-          title: "Ninja Brew",
-          slug: "ninja-brew",
-          ingredients: ["bananas", "coffee", "milk"],
-          id: 1
-        },
-        {
-          title: "Morning Mood",
-          slug: "morning-mood",
-          ingredients: ["mango", "lime", "juice"],
-          id: 2
-        }
-      ]
+      smoothies: []
     };
   },
-  methods:{
-    deleteSmoothie({id}){
+  methods: {
+    deleteSmoothie({ id }) {
       this.smoothies = this.smoothies.filter(smoothie => smoothie.id !== id);
     }
+  },
+  created() {
+    //fetch data from Firestore
+    db.collection("smoothies")
+      .get()
+      .then(
+        snaphot =>
+          (this.smoothies = snaphot.docs.map(el => {
+            const obj = el.data();
+            obj.id = el.id;
+            return obj;
+          }))
+      );
   }
 };
 </script>
