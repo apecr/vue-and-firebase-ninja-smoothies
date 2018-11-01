@@ -6,9 +6,9 @@
                   <span class="nav-title">Ninja Smoothies</span>
               </router-link>
               <a href="" class="btn-floating btn-large halfway-fab pink">
-                  <router-lin to="">
+                  <router-link to="">
                       <i class="material-icons">add</i>
-                  </router-lin>
+                  </router-link>
               </a>
           </div>
       </nav>
