@@ -86,10 +86,11 @@ export default {
   font-size: 2em;
   margin: 20px auto;
 }
-.add-smoothie field {
+.add-smoothie .field {
   margin: 20px auto;
+  position: relative;
 }
-.add-smoothie delete {
+.add-smoothie .delete {
   position: absolute;
   right: 0;
   bottom: 16px;
